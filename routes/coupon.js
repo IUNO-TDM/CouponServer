@@ -3,6 +3,7 @@ var router = express.Router();
 var Coupon = require('../models/coupon');
 var couponDB = require('../database/couponDB');
 var iosCouponGenerator = require('../services/iosCouponGenerator');
+var pdfCouponGenerator = require('../services/pdfCouponGenerator');
 
 router.isObject =  function isObject(a) {
     return (!!a) && (a.constructor === Object);
@@ -31,7 +32,14 @@ router.get('/:id/iosCoupon', function(req, res, next) {
 });
 
 router.get('/:id/pdfCoupon', function(req, res, next) {
-    res.send('respond with a resource');
+    var coupon = couponDB.getCoupon(req.params['id']);
+    if (typeof  coupon !== 'undefined') {
+        pdfCouponGenerator.generateCoupon(coupon,res, error =>{
+            res.send(error);
+        })
+    }else{
+        res.sendStatus(404);
+    }
 });
 
 
