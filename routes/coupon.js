@@ -4,7 +4,9 @@ var Coupon = require('../models/coupon');
 var couponDB = require('../database/couponDB');
 var iosCouponGenerator = require('../services/iosCouponGenerator');
 var pdfCouponGenerator = require('../services/pdfCouponGenerator');
-
+var logger = require('../global/logger');
+var async = require('async');
+var faucet = require('../database/faucetDB');
 router.isObject =  function isObject(a) {
     return (!!a) && (a.constructor === Object);
 }
@@ -14,9 +16,20 @@ router.post('/', function(req, res, next) {
         name = req.body.name;
     }
 
-    var coupon = new Coupon('123456789345678934567894567890',name);
-    couponDB.addCoupon(coupon);
-    res.send(coupon.id);
+    faucet.getAndDeleteKey(function (err,row) {
+        console.log(row);
+        if(err){
+            res.sendStatus(500);
+        }else{
+            var coupon = new Coupon(row.key,row.value,name);
+            couponDB.addCoupon(coupon);
+            res.send(coupon.id);
+        }
+
+
+
+    })
+
 });
 
 router.get('/:id/iosCoupon', function(req, res, next) {
@@ -42,6 +55,21 @@ router.get('/:id/pdfCoupon', function(req, res, next) {
     }
 });
 
+
+router.post('/addCouponKeys', function(req,res,next){
+    if(req.body && Array.isArray(req.body) && req.body.length > 0){
+        async.eachSeries(req.body,function (pair,callback){
+            faucet.addKey(pair.key,pair.value,callback);
+        }, function(err){
+            if(err){
+                res.sendStatus(500);
+            }else{
+                res.sendStatus(201);
+            }
+        })
+    }
+
+});
 
 
 module.exports = router;

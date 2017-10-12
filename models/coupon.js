@@ -1,7 +1,8 @@
 var uuid = require('uuid');
 
-function Coupon(key,name){
+function Coupon(key,value,name){
     this.key = key;
+    this.value = value;
     this.name ="";
     if(name){
         this.name =name
