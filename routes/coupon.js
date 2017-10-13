@@ -21,6 +21,8 @@ router.post('/', function (req, res, next) {
         console.log(row);
         if (err) {
             res.sendStatus(500);
+        }else if (!row){
+          res.sendStatus(900)
         } else {
             var coupon = new Coupon(uuid.v4(),row.key, row.value, name, new Date().toJSON());
             couponDB.addCoupon(coupon, (err) => {
@@ -37,11 +39,11 @@ router.post('/', function (req, res, next) {
 
 router.get('/:id/iosCoupon', function (req, res, next) {
     var coupon = couponDB.getCoupon(req.params['id'], (err,coupon)=>{
-        if (!err && typeof  coupon !== 'undefined') {
+        if (!err && coupon && typeof  coupon !== 'undefined') {
             iosCouponGenerator.generateCoupon(coupon, res, error => {
                 res.send(error);
             })
-        } else {
+        }else {
             res.sendStatus(404);
         }
     });
@@ -51,7 +53,7 @@ router.get('/:id/iosCoupon', function (req, res, next) {
 
 router.get('/:id/pdfCoupon', function (req, res, next) {
     var coupon = couponDB.getCoupon(req.params['id'], (err,coupon)=>{
-        if (!err && typeof  coupon !== 'undefined') {
+        if (!err && coupon && typeof  coupon !== 'undefined') {
             pdfCouponGenerator.generateCoupon(coupon, res, error => {
                 res.send(error);
             })

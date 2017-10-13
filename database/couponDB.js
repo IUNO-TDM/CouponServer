@@ -31,7 +31,7 @@ couponDB.addKey = function(key, value, callback){
 
 couponDB.getAndDeleteKey = function(callback){
   let sql = 'SELECT * FROM codes LIMIT 1; DELETE FROM codes WHERE  key=(SELECT key FROM codes LIMIT 1)';
-  db.each(sql,[],(err,row)=>{
+  db.get(sql,[],(err,row)=>{
       if(err){
           logger.fatal(err);
           callback(err,null);
@@ -71,10 +71,12 @@ couponDB.getCoupon = function(id,callback){
         callback(new Error("ID has wrong format"));
     }
     let sql = 'SELECT * FROM coupons WHERE id=? LIMIT 1';
-    db.each(sql,[id],(err,row)=>{
+    db.get(sql,[id],(err,row)=>{
         if(err){
             logger.fatal(err);
             callback(err,null);
+        }else if (!row){
+            callback(null,null);
         }else{
             let coupon = new Coupon(row.id,row.key,row.value,row.name,row.date);
             callback(null,coupon);
