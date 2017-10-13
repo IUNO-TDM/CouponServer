@@ -16,6 +16,7 @@ pdfCouponGenerator.generateCoupon = function (coupon, res, error) {
     qr.options.height = 200;
     qr.options.width = 200;
     var doc = new PDFDocument({size: 'a6'});
+    doc.info = {Title:"IUNO_COUPON"};
     doc.pipe(res);
     doc.fontSize(18);
     doc.text("Getränkegutschein",{align:'center'});
@@ -31,47 +32,6 @@ pdfCouponGenerator.generateCoupon = function (coupon, res, error) {
 
     svgToPdf(doc,qr.svg(),75,250,{width:150, height:150});
     doc.end();
-    // var qrG = qr.svg({container: 'g'});
-    // var parser = new xml2js.Parser();
-    //
-    //
-    //
-    // parser.parseString(qrG,function(err,parsedQRGroup){
-    //     if (err) throw err;
-    //     fs.readFile('./Coupon/coupon.svg','utf8', function(err, data){
-    //         if (err) throw err;
-    //         var parser = new xml2js.Parser();
-    //         parser.parseString(data, function(err, template){
-    //             if (err) throw err;
-    //             parsedQRGroup.g['$'].transform = 'translate(147.45763,549.15255)';
-    //
-    //             template.svg.g[4] = parsedQRGroup.g;
-    //             var builder = new xml2js.Builder();
-    //             var svg = builder.buildObject(template);
-    //             fs.writeFileSync('./qr.svg',svg);
-    //             // template.svg.g
-    //             PDF.create(svg, {border: 0, type: 'pdf'}).toBuffer(function (err, buffer) {
-    //                 if (err) {
-    //                     error(err);
-    //                 } else {
-    //                     res.set('Content-Type','application/pdf');
-    //                     res.set('Content-Disposition', 'attachment; filename=\"coupon.pdf\"');
-    //                     res.send(buffer);
-    //                 }
-    //
-    //             });
-    //         })
-    //     });
-    // });
-
-
-
-
-    // var svgText =
-
-
-
-
 };
 
 

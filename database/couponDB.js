@@ -4,6 +4,7 @@ const CONFIG = require("../config/config_loader.js");
 var sqlite3 = require('sqlite3').verbose();
 var validate = require('uuid-validate');
 var Coupon = require('../models/coupon');
+
 let db = new sqlite3.Database(CONFIG.DATABASE_NAME,(err)=>{
     if (err) {
         logger.fatal(err.message);
@@ -18,6 +19,17 @@ var couponDB = {};
 
 couponDB.addKey = function(key, value, callback){
     let sql = 'INSERT INTO codes(key,value) VALUES(?,?)';
+    var key_regexp = /^[A-Z-a-z0-9]+$/gi;
+    var value_regexp = /^[0-9]+(.[0-9]+)?$/gi;
+    if(!key.match(key_regexp)){
+        var e = new Error("Key has wrong format");
+        callback(e);
+    }
+    if(!value.match(value_regexp)){
+        var e = new Error("value has wrong format");
+        callback(e);
+    }
+
     db.run(sql,[key,value],function (err) {
         if(err){
             logger.fatal(err.message);
