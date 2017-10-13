@@ -58,3 +58,5 @@ typings/
 .env
 
 keys
+.idea
+coupon.db

@@ -1,74 +1,90 @@
 var express = require('express');
 var router = express.Router();
 var Coupon = require('../models/coupon');
-var couponDB = require('../database/couponDB');
+// var couponDB = require('../database/old_couponDB');
 var iosCouponGenerator = require('../services/iosCouponGenerator');
 var pdfCouponGenerator = require('../services/pdfCouponGenerator');
 var logger = require('../global/logger');
 var async = require('async');
-var faucet = require('../database/faucetDB');
-router.isObject =  function isObject(a) {
+var couponDB = require('../database/couponDB');
+var uuid = require('uuid');
+router.isObject = function isObject(a) {
     return (!!a) && (a.constructor === Object);
 }
-router.post('/', function(req, res, next) {
+router.post('/', function (req, res, next) {
     var name = "";
     if (req.body && router.isObject(req.body) && req.body.name) {
         name = req.body.name;
     }
 
-    faucet.getAndDeleteKey(function (err,row) {
+    couponDB.getAndDeleteKey(function (err, row) {
         console.log(row);
-        if(err){
+        if (err) {
             res.sendStatus(500);
-        }else{
-            var coupon = new Coupon(row.key,row.value,name);
-            couponDB.addCoupon(coupon);
-            res.send(coupon.id);
+        } else {
+            var coupon = new Coupon(uuid.v4(),row.key, row.value, name, new Date().toJSON());
+            couponDB.addCoupon(coupon, (err) => {
+                if (err) {
+                    logger.log(err);
+                    res.sendStatus(500);
+                } else {
+                    res.send(coupon.id);
+                }
+            })
         }
-
-
-
     })
+});
+
+router.get('/:id/iosCoupon', function (req, res, next) {
+    var coupon = couponDB.getCoupon(req.params['id'], (err,coupon)=>{
+        if (!err && typeof  coupon !== 'undefined') {
+            iosCouponGenerator.generateCoupon(coupon, res, error => {
+                res.send(error);
+            })
+        } else {
+            res.sendStatus(404);
+        }
+    });
+
 
 });
 
-router.get('/:id/iosCoupon', function(req, res, next) {
-    var coupon = couponDB.getCoupon(req.params['id']);
-    if (typeof  coupon !== 'undefined') {
-        iosCouponGenerator.generateCoupon(coupon,res, error =>{
-            res.send(error);
-        })
-    }else{
-        res.sendStatus(404);
-    }
-
-});
-
-router.get('/:id/pdfCoupon', function(req, res, next) {
-    var coupon = couponDB.getCoupon(req.params['id']);
-    if (typeof  coupon !== 'undefined') {
-        pdfCouponGenerator.generateCoupon(coupon,res, error =>{
-            res.send(error);
-        })
-    }else{
-        res.sendStatus(404);
-    }
+router.get('/:id/pdfCoupon', function (req, res, next) {
+    var coupon = couponDB.getCoupon(req.params['id'], (err,coupon)=>{
+        if (!err && typeof  coupon !== 'undefined') {
+            pdfCouponGenerator.generateCoupon(coupon, res, error => {
+                res.send(error);
+            })
+        } else {
+            res.sendStatus(404);
+        }
+    });
 });
 
 
-router.post('/addCouponKeys', function(req,res,next){
-    if(req.body && Array.isArray(req.body) && req.body.length > 0){
-        async.eachSeries(req.body,function (pair,callback){
-            faucet.addKey(pair.key,pair.value,callback);
-        }, function(err){
-            if(err){
+router.post('/addCouponKeys', function (req, res, next) {
+    if (req.body && Array.isArray(req.body) && req.body.length > 0) {
+        async.eachSeries(req.body, function (pair, callback) {
+            couponDB.addKey(pair.key, pair.value, callback);
+        }, function (err) {
+            if (err) {
                 res.sendStatus(500);
-            }else{
+            } else {
                 res.sendStatus(201);
             }
         })
     }
 
+});
+
+router.get('/keyCount', function(req,res,next){
+   couponDB.getKeyCount((err,count)=>{
+       if(err){
+           res.sendStatus(500);
+       }else{
+           res.send(String(count));
+       }
+   })
 });
 
 

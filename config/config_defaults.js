@@ -8,7 +8,7 @@ const self = {};
 
 // ---- CONFIGURATION EXPORT ----
 
-self.DATABASE_NAME = 'faucet.db';
+self.DATABASE_NAME = 'coupon.db';
 self.LOG_LEVEL = 'debug';
 
 
