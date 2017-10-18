@@ -60,3 +60,5 @@ typings/
 keys
 .idea
 coupon.db
+
+private*
