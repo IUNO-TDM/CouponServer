@@ -11,10 +11,10 @@ const template = new Template("coupon", {
     formatVersion : 1,
     passTypeIdentifier: "pass.com.trumpf.iuno.coupon",
     teamIdentifier:     "YC8CNSGUUG",
-    backgroundColor:   "rgb(192, 202, 69)",
+    backgroundColor:   "rgb(87, 139, 104)",
     organizationName : "IUNO",
     description : "Getränkegutschein",
-    logoText : "IUNO-Projekt",
+    logoText : "",
 
 });
 template.keys(CONF.CERT_PATH,CONF.CERT_SECRET);
@@ -36,14 +36,14 @@ iosCouponGenerator.generateCoupon = function (coupon, response, error) {
                     {
                         "longitude" : 11.117900, //SPS IPC DRIVES 2017
                         "latitude" : 49.419236,   //SPS IPC DRIVES 2017
-                        "relevantText": "ZVEI - Halle 6, Stand 140 D"
+                        "relevantText": "ZVEI - Halle 6, Stand 140D"
                     }
                 ],
                 beacons: [
                     {
                         "proximityUUID":"1E809A70-DF5E-4C81-BFE0-549D552D0BAF",
                         "relevantText":"Ganz in der Nähe ist der IUNO Getränkemischer",
-                        "name" : "Stand 140 D"
+                        "name" : "Halle6, Stand 140D"
                     } ],
 
                 primaryFields : [
