@@ -20,8 +20,10 @@ router.post('/', function (req, res, next) {
     couponDB.getAndDeleteKey(function (err, row) {
         console.log(row);
         if (err) {
+            console.error(err);
             res.sendStatus(500);
         }else if (!row){
+            console.log('No coupon found');
           res.sendStatus(900)
         } else {
             var coupon = new Coupon(uuid.v4(),row.key, row.value, name, new Date().toJSON());
