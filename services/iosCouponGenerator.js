@@ -29,7 +29,7 @@ iosCouponGenerator.generateCoupon = function (coupon, response, error) {
         logger.warn('No Cert Path for iOS coupons is defined.');
         response.sendStatus(500);
     }else{
-        logger.info('Loading certificate files from: ' + CONF.CERT_PATH);
+        logger.debug('Loading certificate files from: ' + CONF.CERT_PATH);
         var pass = template.createPass({
             coupon : {
                 locations : [
