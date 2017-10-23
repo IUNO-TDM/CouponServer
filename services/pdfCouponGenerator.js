@@ -41,7 +41,7 @@ pdfCouponGenerator.generateCoupon = function (coupon, res, error) {
     svgToPdf(doc,qr.svg(),75,310,{width:140, height:140});
 
     doc.fontSize(12);
-    doc.text("Besuchen Sie uns am Gemeinschaftsstand",{align:'center'});
+    doc.text("Besuchen Sie uns auf der SPS IPC Drives 2017",{align:'center'});
     doc.font('Coupon/Arial Bold.ttf');
     doc.text( "\"Automation meets IT\", ZVEI, Halle 6, Stand 140D",{align:'center'});
     doc.font('Coupon/Arial.ttf');
