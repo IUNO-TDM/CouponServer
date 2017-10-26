@@ -48,8 +48,8 @@ couponDB.getAndDeleteKey = function(callback){
           logger.fatal(err);
           callback(err,null);
       }else{
-          let delSql = 'DELETE FROM codes WHERE  key=(SELECT key FROM codes LIMIT 1)'
-          db.run(delSql,[],function (err) {
+          let delSql = 'DELETE FROM codes WHERE ?=key';
+          db.run(delSql,[row.key],function (err) {
               if(err){
                   callback(err,null);
               }else{
