@@ -42,13 +42,23 @@ couponDB.addKey = function(key, value, callback){
 };
 
 couponDB.getAndDeleteKey = function(callback){
-  let sql = 'SELECT * FROM codes LIMIT 1; DELETE FROM codes WHERE  key=(SELECT key FROM codes LIMIT 1)';
+  let sql = 'SELECT * FROM codes LIMIT 1';
   db.get(sql,[],(err,row)=>{
       if(err){
           logger.fatal(err);
           callback(err,null);
       }else{
-          callback(null,row);
+          let delSql = 'DELETE FROM codes WHERE  key=(SELECT key FROM codes LIMIT 1)'
+          db.run(delSql,[],function (err) {
+              if(err){
+                  callback(err,null);
+              }else{
+                  callback(null,row);
+              }
+
+          })
+
+
       }
   })
 };
