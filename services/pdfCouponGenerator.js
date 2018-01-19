@@ -45,10 +45,10 @@ pdfCouponGenerator.generateCoupon = function (coupon, res, error) {
     svgToPdf(doc,qr_svg,75,310,{width:140, height:140});
 
     doc.fontSize(12);
-    doc.text("Besuchen Sie uns auf der SPS IPC Drives 2017",{align:'center'});
-    doc.font('Coupon/LiberationSans-Bold-webfont.ttf');
-    doc.text( "\"Automation meets IT\", ZVEI, Halle 6, Stand 140D",{align:'center'});
-    doc.font('Coupon/LiberationSans-Regular-webfont.ttf');
+    doc.text("Besuchen Sie uns auf der Hannover Messe 2018",{align:'center'});
+//    doc.font('Coupon/LiberationSans-Bold-webfont.ttf');
+//    doc.text( "\"Automation meets IT\", ZVEI, Halle 6, Stand 140D",{align:'center'});
+//    doc.font('Coupon/LiberationSans-Regular-webfont.ttf');
     doc.text( "und testen Sie unser Rezept für Datensicherheit.",{align:'center'});
 
 
