@@ -34,16 +34,16 @@ iosCouponGenerator.generateCoupon = function (coupon, response, error) {
             coupon : {
                 locations : [
                     {
-                        "longitude" : 11.117900, //SPS IPC DRIVES 2017
-                        "latitude" : 49.419236,   //SPS IPC DRIVES 2017
-                        "relevantText": "ZVEI - Halle 6, Stand 140D"
+                        "longitude" : 9.808763,
+                        "latitude" : 52.322368,
+                        "relevantText": "Hannover Messe"
                     }
                 ],
                 beacons: [
                     {
                         "proximityUUID":"1E809A70-DF5E-4C81-BFE0-549D552D0BAF",
                         "relevantText":"Ganz in der Nähe ist der IUNO Getränkemischer",
-                        "name" : "Halle6, Stand 140D"
+                        "name" : "Hannover Messe"
                     } ],
 
                 primaryFields : [
@@ -56,7 +56,7 @@ iosCouponGenerator.generateCoupon = function (coupon, response, error) {
                 secondaryFields : [
                     {
                         key : "location",
-                        label : "SPS IPC Drives 2017 - Halle 6, Stand 140D "
+                        label : "Hannover Messe"
                     }
                 ],
                 backFields: [
