@@ -34,9 +34,14 @@ iosCouponGenerator.generateCoupon = function (coupon, response, error) {
             coupon : {
                 locations : [
                     {
-                        "longitude" : 9.808763,
-                        "latitude" : 52.322368,
-                        "relevantText": "Hannover Messe"
+                        "longitude" :  9.81025,
+                        "latitude" :  52.32395,
+                        "relevantText": "IUNO (Halle 6, Stand D02/1)"
+                    },
+                    {
+                        "longitude" :  9.81131,
+                        "latitude" :  52.32178,
+                        "relevantText": "AXOOM (Halle 8, Stand F12)"
                     }
                 ],
                 beacons: [
@@ -56,7 +61,7 @@ iosCouponGenerator.generateCoupon = function (coupon, response, error) {
                 secondaryFields : [
                     {
                         key : "location",
-                        label : "Hannover Messe"
+                        label : "Hannover Messe 2018: Halle 6 D02/1 & Halle 8 F12 "
                     }
                 ],
                 backFields: [
@@ -64,7 +69,18 @@ iosCouponGenerator.generateCoupon = function (coupon, response, error) {
                         key : "website",
                         label : "Erstellen Sie selbst Cocktailrezepte",
                         value : "https://iuno.axoom.cloud"
+                    },
+                    {
+                        key : "redemption-1",
+                        label : "IUNO-Projekt",
+                        value : "Gemeinschaftsstand Industrial Security Halle 6, Stand D02/1"
+                    },
+                    {
+                        key : "redemption-2",
+                        label : "Axoom",
+                        value : "Halle 8, Stand F12"
                     }
+
                 ]
             },
             serialNumber: coupon.id,
