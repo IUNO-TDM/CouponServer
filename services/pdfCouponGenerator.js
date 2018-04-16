@@ -38,16 +38,16 @@ pdfCouponGenerator.generateCoupon = function (coupon, res, error) {
     doc.fontSize(14);
     doc.text("Getränkegutschein im Wert von",{align:'center'});
     doc.fontSize(32);
-    doc.moveDown(0.7);
+    doc.moveDown(0.5);
     doc.text(coupon.value * 1000 + " IUNO ",{align:'center'});
-    doc.moveDown(0.7);
-    svgToPdf(doc,whiteRect,70,305,{width:140, height:140});
-    svgToPdf(doc,qr_svg,75,310,{width:140, height:140});
+    doc.moveDown(0.5);
+    svgToPdf(doc,whiteRect,70,310,{width:140, height:140});
+    svgToPdf(doc,qr_svg,75,315,{width:140, height:140});
 
     doc.fontSize(12);
     doc.text("Besuchen Sie uns auf der Hannover Messe 2018",{align:'center'});
     doc.font('Coupon/LiberationSans-Bold-webfont.ttf');
-    doc.text( "\"Gemeinschaftsstand Industrial Security\", Halle 6, Stand D02/1",{align:'center'});
+    doc.text( "IUNO, Halle 6, Stand D02/1",{align:'center'});
     doc.text( "AXOOM, Halle 8, Stand F12",{align:'center'});
     doc.font('Coupon/LiberationSans-Regular-webfont.ttf');
     doc.text( "und testen Sie unser Rezept für Datensicherheit.",{align:'center'});
