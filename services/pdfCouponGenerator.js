@@ -46,9 +46,10 @@ pdfCouponGenerator.generateCoupon = function (coupon, res, error) {
 
     doc.fontSize(12);
     doc.text("Besuchen Sie uns auf der Hannover Messe 2018",{align:'center'});
-//    doc.font('Coupon/LiberationSans-Bold-webfont.ttf');
-//    doc.text( "\"Automation meets IT\", ZVEI, Halle 6, Stand 140D",{align:'center'});
-//    doc.font('Coupon/LiberationSans-Regular-webfont.ttf');
+    doc.font('Coupon/LiberationSans-Bold-webfont.ttf');
+    doc.text( "\"Gemeinschaftsstand Industrial Security\", Halle 6, Stand D02/1",{align:'center'});
+    doc.text( "AXOOM, Halle 8, Stand F12",{align:'center'});
+    doc.font('Coupon/LiberationSans-Regular-webfont.ttf');
     doc.text( "und testen Sie unser Rezept für Datensicherheit.",{align:'center'});
 
 
