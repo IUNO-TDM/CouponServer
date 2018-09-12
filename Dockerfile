@@ -1,6 +1,6 @@
-FROM node:alpine
+FROM node:10-stretch
 RUN npm install pm2 -g
-RUN apk add --update openssl
+RUN apt-get update && apt-get install openssl
 
 # Configure log rotate
 
