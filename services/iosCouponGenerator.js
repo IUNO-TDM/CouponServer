@@ -34,14 +34,9 @@ iosCouponGenerator.generateCoupon = function (coupon, response, error) {
             coupon : {
                 locations : [
                     {
-                        "longitude" :  9.81025,
-                        "latitude" :  52.32395,
-                        "relevantText": "IUNO (Halle 6, Stand D02/1)"
-                    },
-                    {
-                        "longitude" :  9.81131,
-                        "latitude" :  52.32178,
-                        "relevantText": "AXOOM (Halle 8, Stand F12)"
+                        "longitude" :  2.129410,
+                        "latitude" :  41.354358,
+                        "relevantText": "IOTSWC 2018"
                     }
                 ],
                 beacons: [
@@ -61,7 +56,7 @@ iosCouponGenerator.generateCoupon = function (coupon, response, error) {
                 secondaryFields : [
                     {
                         key : "location",
-                        label : "Hannover Messe 2018: Halle 6 D02/1 & Halle 8 F12 "
+                        label : "IOTSWC 2018 Barcelona"
                     }
                 ],
                 backFields: [
@@ -71,14 +66,9 @@ iosCouponGenerator.generateCoupon = function (coupon, response, error) {
                         value : "https://iuno.axoom.cloud"
                     },
                     {
-                        key : "redemption-1",
+                        key : "redemption",
                         label : "IUNO-Projekt",
-                        value : "Gemeinschaftsstand Industrial Security Halle 6, Stand D02/1"
-                    },
-                    {
-                        key : "redemption-2",
-                        label : "Axoom",
-                        value : "Halle 8, Stand F12"
+                        value : "IOTSWC 2018 Barcelona"
                     }
 
                 ]

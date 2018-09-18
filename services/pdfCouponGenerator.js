@@ -41,15 +41,11 @@ pdfCouponGenerator.generateCoupon = function (coupon, res, error) {
     doc.moveDown(0.5);
     doc.text(coupon.value * 1000 + " IUNO ",{align:'center'});
     doc.moveDown(0.5);
-    svgToPdf(doc,whiteRect,70,310,{width:140, height:140});
-    svgToPdf(doc,qr_svg,75,315,{width:140, height:140});
+    svgToPdf(doc,whiteRect,70,280,{width:140, height:140});
+    svgToPdf(doc,qr_svg,75,285,{width:140, height:140});
 
     doc.fontSize(12);
-    doc.text("Besuchen Sie uns auf der Hannover Messe 2018",{align:'center'});
-    doc.font('Coupon/LiberationSans-Bold-webfont.ttf');
-    doc.text( "IUNO, Halle 6, Stand D02/1",{align:'center'});
-    doc.text( "AXOOM, Halle 8, Stand F12",{align:'center'});
-    doc.font('Coupon/LiberationSans-Regular-webfont.ttf');
+    doc.text("Besuchen Sie uns auf der IOTSWC 2018 Barcelona",{align:'center'});
     doc.text( "und testen Sie unser Rezept für Datensicherheit.",{align:'center'});
 
 
