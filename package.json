@@ -21,7 +21,7 @@
     "qr-image": "^3.2.0",
     "request": "^2.88.0",
     "serve-favicon": "^2.5.0",
-    "snyk": "^1.95.3",
+    "snyk": "^1.124.1",
     "sqlite3": "^4.0.2",
     "svg-to-pdfkit": "^0.1.7",
     "svgutils": "^0.13.6",
@@ -30,7 +30,7 @@
     "winston": "^2.4.3",
     "xml2js": "^0.4.19",
     "gm": "^1.23.1",
-    "lodash": "^4.17.10"
+    "lodash": "^4.17.12"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
