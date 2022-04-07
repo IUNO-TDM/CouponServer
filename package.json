@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@destinationstransfers/passkit": "^4.3.1",
-    "async": "^2.6.1",
+    "async": "^3.2.2",
     "body-parser": "^1.18.3",
     "cookie-parser": "~1.4.3",
     "csv-parse": "^3.0.0",
@@ -27,7 +27,7 @@
     "svgutils": "^0.13.6",
     "uuid": "^3.3.2",
     "uuid-validate": "0.0.3",
-    "winston": "^2.4.3",
+    "winston": "^3.3.0",
     "xml2js": "^0.4.19",
     "gm": "^1.23.1",
     "lodash": "^4.17.12"
