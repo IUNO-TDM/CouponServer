@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@destinationstransfers/passkit": "^4.3.1",
-    "async": "^2.6.1",
+    "async": "^2.6.4",
     "body-parser": "^1.18.3",
     "cookie-parser": "~1.4.3",
     "csv-parse": "^3.0.0",
