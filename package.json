@@ -10,11 +10,11 @@
   "dependencies": {
     "@destinationstransfers/passkit": "^4.3.1",
     "async": "^2.6.1",
-    "body-parser": "^1.18.3",
+    "body-parser": "^1.19.2",
     "cookie-parser": "~1.4.3",
     "csv-parse": "^3.0.0",
     "debug": "^4.0.1",
-    "express": "^4.16.3",
+    "express": "^4.17.3",
     "html-pdf": "^2.2.0",
     "morgan": "^1.9.1",
     "pdfkit": "^0.8.3",
