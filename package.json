@@ -14,7 +14,7 @@
     "cookie-parser": "~1.4.3",
     "csv-parse": "^3.0.0",
     "debug": "^4.0.1",
-    "express": "^4.16.3",
+    "express": "^4.19.2",
     "html-pdf": "^2.2.0",
     "morgan": "^1.9.1",
     "pdfkit": "^0.8.3",
